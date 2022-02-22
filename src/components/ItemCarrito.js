@@ -37,7 +37,13 @@ export default function ItemCarrito(props) {
           className="carrito-item-borrar"
           onClick={handleBorrar}
         />
-        <a onClick={handleAgregar}>agregar</a>
+        {/* <a onClick={handleAgregar}>agregar</a> */}
+        <div className="div">
+          <button className="home-item-comprar" onClick={handleAgregar}>
+            +
+          </button>
+          <button className="home-item-comprar">-</button>
+        </div>
       </div>
     </>
   );
