@@ -17,8 +17,9 @@ body {
 }
 .titulo {
   text-align: center;
-  font-weight: 700;
-  margin-top: 0px;
+  font-size: 3rem;
+  font-weight: 900;
+  margin-top: 30px;
 }
 .container {
   display: flex;

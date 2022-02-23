@@ -28,22 +28,22 @@ export default function ItemCarrito(props) {
         <div className="carrito-txt">
           <h1 className="carrito-item-titulo">{nombre}</h1>
           <h3 className="carrito-item-precio">AR${precio}</h3>
-          <h3 className="carrito-item-precio">Cantidad: {q}</h3>
+          <h5>Cantidad: {q}</h5>
         </div>
 
+        {/* <a onClick={handleAgregar}>agregar</a> */}
+        <div className="div">
+          <button className="home-item-comprar">-</button>
+          <button className="home-item-comprar" onClick={handleAgregar}>
+            +
+          </button>
+        </div>
         <img
           src={Borrar}
           alt="sticker image"
           className="carrito-item-borrar"
           onClick={handleBorrar}
         />
-        {/* <a onClick={handleAgregar}>agregar</a> */}
-        <div className="div">
-          <button className="home-item-comprar" onClick={handleAgregar}>
-            +
-          </button>
-          <button className="home-item-comprar">-</button>
-        </div>
       </div>
     </>
   );

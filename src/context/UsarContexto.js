@@ -12,9 +12,9 @@ export default function UsarContexto(props) {
   };
   const [state, dispatch] = useReducer(Reducer, estadoInicial);
 
-  function aumentar_cantidad(id_cantidad) {
+  //Funcion que incrementa la cantidad dado un ID en STATE.CANTIDAD
+  function incrementar_cantidad(id_cantidad) {
     let i = state.cantidad.findIndex((item) => item.id === id_cantidad);
-    console.log("se va a sumar la cantidad aqui", state.cantidad[i]);
     state.cantidad[i].cantidad++;
   }
 
@@ -23,39 +23,42 @@ export default function UsarContexto(props) {
       "https://devrockstore-default-rtdb.firebaseio.com/productos.json"
     );
     dispatch({ type: "LISTAME_PRODUCTOS", payload: res.data });
-    console.log(res.data, "desde UsarContexto()");
   };
 
   const agregarCarrito = (item, precio) => {
     let payload = { item, precio };
-    let exist = false;
 
+    //Se verifica si existe el Item
+    let exist = false;
     for (let i = 0; i < state.carrito.length; i++) {
       if (state.carrito[i][0].id === item) {
         exist = true;
       }
     }
 
+    //Si NO EXISTE se procede a:
+    // 1) Se crea la informacion en STATE.CANTIDAD para manipular la cantidad del item
+    // 2) Se agrega al carrito
     if (!exist) {
       state.cantidad.push({ id: item, cantidad: 1 });
       dispatch({ type: "AGREGAR_CARRITO", payload: payload });
-    } else if (exist) {
-      dispatch({ type: "AGREGAR_CANTIDAD", payload: payload });
-      aumentar_cantidad(item);
+    }
+    //Si EXISTE se suma el precio al total y se actualiza su informacion en STATE.CANTIDAD
+    else if (exist) {
+      dispatch({ type: "SUMAR_TOTAL", payload: payload });
+      incrementar_cantidad(item);
     }
   };
 
   const eliminarCarrito = (item, precio, q) => {
     let payload = { item, precio, q };
-    console.log("Eliminar carrito", item);
     dispatch({ type: "ELIMINAR_CARRITO", payload: payload });
   };
 
   const agregarCantidad = (item, precio) => {
     let payload = { item, precio };
-
-    aumentar_cantidad(item);
-    dispatch({ type: "AGREGAR_CANTIDAD", payload: payload });
+    incrementar_cantidad(item);
+    dispatch({ type: "SUMAR_TOTAL", payload: payload });
   };
 
   return (

@@ -24,38 +24,35 @@ export default function Reducer(state, action) {
       };
 
     case ELIMINAR_CARRITO:
+      //Se elimina su informacion en state.cantidad[...]
       let indice_cantidad = state.cantidad.findIndex(
         (item) => item.id === payload.item
       );
       state.cantidad.splice(indice_cantidad, 1);
 
-      function elimina(id) {
-        let index = state.carrito.findIndex((item) => item[0].id === id);
-        if (index >= 0) {
-          state.carrito.splice(index, 1);
-        }
-        return state.carrito;
-      }
+      // function elimina(id) {
+      //   let index = state.carrito.findIndex((item) => item[0].id === id);
+      //   if (index >= 0) {
+      //     state.carrito.splice(index, 1);
+      //   }
+      //   return state.carrito;
+      // }
 
+      // return {
+      //   ...state,
+      //   carrito: elimina(payload.item),
+      //   total: state.total - payload.precio * payload.q,
+      // };
       return {
         ...state,
-        carrito: elimina(payload.item),
+        carrito: state.carrito.filter((items) => items[0].id !== payload.item),
         total: state.total - payload.precio * payload.q,
-        //total: state.total - payload.precio * (cantidad_producto) << funcion a realizar
-      };
-
-    case AGREGAR_CANTIDAD:
-      //no hace otra cosa que sumar el precio al total
-
-      return {
-        ...state,
-        total: state.total + payload.precio,
       };
 
     case SUMAR_TOTAL:
       return {
         ...state,
-        total: state.total + payload,
+        total: state.total + payload.precio,
       };
   }
 }
