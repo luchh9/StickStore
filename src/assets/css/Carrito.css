@@ -11,3 +11,17 @@
   border-radius: 10px;
   overflow: scroll;
 }
+
+.vaciar-button {
+  width: 100px;
+  background-color: #2f39ff;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.carrito-precio-total {
+  width: 100%;
+  text-align: right;
+  margin-top: 15px;
+  margin-right: 10px;
+}

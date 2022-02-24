@@ -3,8 +3,9 @@
 const LISTAME_PRODUCTOS = "LISTAME_PRODUCTOS";
 const AGREGAR_CARRITO = "AGREGAR_CARRITO";
 const ELIMINAR_CARRITO = "ELIMINAR_CARRITO";
-const AGREGAR_CANTIDAD = "AGREGAR_CANTIDAD";
 const SUMAR_TOTAL = "SUMAR_TOTAL";
+const RESTAR_TOTAL = "RESTAR_TOTAL";
+const VACIAR_CARRITO = "VACIAR_CARRITO";
 
 export default function Reducer(state, action) {
   const { payload, type } = action;
@@ -30,19 +31,6 @@ export default function Reducer(state, action) {
       );
       state.cantidad.splice(indice_cantidad, 1);
 
-      // function elimina(id) {
-      //   let index = state.carrito.findIndex((item) => item[0].id === id);
-      //   if (index >= 0) {
-      //     state.carrito.splice(index, 1);
-      //   }
-      //   return state.carrito;
-      // }
-
-      // return {
-      //   ...state,
-      //   carrito: elimina(payload.item),
-      //   total: state.total - payload.precio * payload.q,
-      // };
       return {
         ...state,
         carrito: state.carrito.filter((items) => items[0].id !== payload.item),
@@ -53,6 +41,20 @@ export default function Reducer(state, action) {
       return {
         ...state,
         total: state.total + payload.precio,
+      };
+
+    case RESTAR_TOTAL:
+      return {
+        ...state,
+        total: state.total - payload.precio,
+      };
+
+    case VACIAR_CARRITO:
+      return {
+        ...state,
+        carrito: [],
+        cantidad: [],
+        total: 0,
       };
   }
 }

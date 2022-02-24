@@ -8,14 +8,21 @@ export default function UsarContexto(props) {
     productos: [],
     carrito: [],
     total: 0,
+    //Cantidad es un array que se utiliza para manipular la cantidad INDIVIDUAL de cada item/producto
     cantidad: [],
   };
   const [state, dispatch] = useReducer(Reducer, estadoInicial);
 
+  //Devuelve la POSICION en state.cantidad dado un ID
+  function findIndexCantidad(id) {
+    let i = state.cantidad.findIndex((item) => item.id === id);
+    return i;
+  }
+
   //Funcion que incrementa la cantidad dado un ID en STATE.CANTIDAD
   function incrementar_cantidad(id_cantidad) {
-    let i = state.cantidad.findIndex((item) => item.id === id_cantidad);
-    state.cantidad[i].cantidad++;
+    let indice = findIndexCantidad(id_cantidad);
+    state.cantidad[indice].cantidad++;
   }
 
   const listameProductos = async () => {
@@ -25,6 +32,7 @@ export default function UsarContexto(props) {
     dispatch({ type: "LISTAME_PRODUCTOS", payload: res.data });
   };
 
+  //Esta funcion agrega items al carrito, en caso de no existir se incrementa la cantidad de dicho producto
   const agregarCarrito = (item, precio) => {
     let payload = { item, precio };
 
@@ -57,8 +65,23 @@ export default function UsarContexto(props) {
 
   const agregarCantidad = (item, precio) => {
     let payload = { item, precio };
-    incrementar_cantidad(item);
+    let indice = findIndexCantidad(item);
+    state.cantidad[indice].cantidad++;
     dispatch({ type: "SUMAR_TOTAL", payload: payload });
+  };
+
+  const disminuirCantidad = (item, precio) => {
+    let payload = { item, precio };
+    let indice = findIndexCantidad(item);
+    if (state.cantidad[indice].cantidad > 1) {
+      state.cantidad[indice].cantidad--;
+      dispatch({ type: "RESTAR_TOTAL", payload: payload });
+    }
+  };
+
+  const vaciarCarrito = () => {
+    let payload = {};
+    dispatch({ type: "VACIAR_CARRITO", payload: payload });
   };
 
   return (
@@ -72,6 +95,8 @@ export default function UsarContexto(props) {
         agregarCarrito,
         eliminarCarrito,
         agregarCantidad,
+        disminuirCantidad,
+        vaciarCarrito,
       }}
     >
       {children}

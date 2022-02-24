@@ -7,7 +7,7 @@ export default function Item(props) {
   return (
     <>
       <div className="home-item">
-        <img src={img} alt="" className="home-item-img" />
+        <img loading="lazy" src={img} alt="" className="home-item-img" />
         <div className="home-item-info">
           <h1 className="home-item-titulo">{nombre}</h1>
           <p className="home-item-medidas">Medidas: {medidas}</p>

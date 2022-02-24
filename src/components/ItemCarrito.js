@@ -20,6 +20,10 @@ export default function ItemCarrito(props) {
   const handleAgregar = () => {
     props.agregarCantidad(id, precio);
   };
+  const handleDisminuir = () => {
+    props.disminuirCantidad(id, precio);
+    console.log("decrementar");
+  };
 
   return (
     <>
@@ -30,10 +34,10 @@ export default function ItemCarrito(props) {
           <h3 className="carrito-item-precio">AR${precio}</h3>
           <h5>Cantidad: {q}</h5>
         </div>
-
-        {/* <a onClick={handleAgregar}>agregar</a> */}
         <div className="div">
-          <button className="home-item-comprar">-</button>
+          <button className="home-item-comprar" onClick={handleDisminuir}>
+            -
+          </button>
           <button className="home-item-comprar" onClick={handleAgregar}>
             +
           </button>
