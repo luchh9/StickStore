@@ -13,7 +13,7 @@
   justify-content: space-between;
 }
 .home-item-img {
-  height: 100px;
+  height: 90px;
 }
 .home-item-actions {
   display: flex;
@@ -46,3 +46,8 @@
   border-radius: 10px;
   width: 40px;
 }
+/* @media only screen and (max-width: 575px) {
+  .home-item-comprar {
+    width: 40px;
+  }
+} */

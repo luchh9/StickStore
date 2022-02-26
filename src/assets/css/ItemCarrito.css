@@ -33,3 +33,7 @@
   text-align: right;
   margin-top: 15px;
 }
+.carrito-cantidad {
+  display: flex;
+  flex-direction: row;
+}

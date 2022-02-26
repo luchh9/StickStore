@@ -34,7 +34,7 @@ export default function ItemCarrito(props) {
           <h3 className="carrito-item-precio">AR${precio}</h3>
           <h5>Cantidad: {q}</h5>
         </div>
-        <div className="div">
+        <div className="carrito-cantidad">
           <button className="home-item-comprar" onClick={handleDisminuir}>
             -
           </button>
