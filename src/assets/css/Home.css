@@ -9,6 +9,16 @@ body {
   right: 24px;
   top: 50px;
 }
+.carrito-total {
+  width: 20px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  color: aliceblue;
+  text-align: center;
+  background-color: rgb(191, 21, 21);
+  border-radius: 10px;
+}
 .volver {
   width: 20px;
   position: absolute;

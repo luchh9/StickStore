@@ -10,6 +10,7 @@ export default function UsarContexto(props) {
     total: 0,
     //Cantidad es un array que se utiliza para manipular la cantidad INDIVIDUAL de cada item/producto
     cantidad: [],
+    cantidadTotalCarrito: 0,
   };
   const [state, dispatch] = useReducer(Reducer, estadoInicial);
 
@@ -53,8 +54,8 @@ export default function UsarContexto(props) {
     }
     //Si EXISTE se suma el precio al total y se actualiza su informacion en STATE.CANTIDAD
     else if (exist) {
-      dispatch({ type: "SUMAR_TOTAL", payload: payload });
       incrementar_cantidad(item);
+      dispatch({ type: "SUMAR_TOTAL", payload: payload });
     }
   };
 
@@ -91,6 +92,7 @@ export default function UsarContexto(props) {
         carrito: state.carrito,
         total: state.total,
         cantidad: state.cantidad,
+        cantidadTotalCarrito: state.cantidadTotalCarrito,
         listameProductos,
         agregarCarrito,
         eliminarCarrito,

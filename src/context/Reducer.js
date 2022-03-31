@@ -22,6 +22,7 @@ export default function Reducer(state, action) {
           state.productos.filter((ite) => ite.id === payload.item),
         ],
         total: state.total + payload.precio,
+        cantidadTotalCarrito: state.cantidadTotalCarrito + 1,
       };
 
     case ELIMINAR_CARRITO:
@@ -35,18 +36,21 @@ export default function Reducer(state, action) {
         ...state,
         carrito: state.carrito.filter((items) => items[0].id !== payload.item),
         total: state.total - payload.precio * payload.q,
+        cantidadTotalCarrito: state.cantidadTotalCarrito - payload.q,
       };
 
     case SUMAR_TOTAL:
       return {
         ...state,
         total: state.total + payload.precio,
+        cantidadTotalCarrito: state.cantidadTotalCarrito + 1,
       };
 
     case RESTAR_TOTAL:
       return {
         ...state,
         total: state.total - payload.precio,
+        cantidadTotalCarrito: state.cantidadTotalCarrito - 1,
       };
 
     case VACIAR_CARRITO:
@@ -55,6 +59,7 @@ export default function Reducer(state, action) {
         carrito: [],
         cantidad: [],
         total: 0,
+        cantidadTotalCarrito: 0,
       };
   }
 }
