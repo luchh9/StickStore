@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Contexto from "../context/Contexto";
 import "../assets/css/Home.css";
 import Item from "../components/Item";
+
 export default function Home() {
   const { listameProductos, productos } = useContext(Contexto);
   useEffect(() => {

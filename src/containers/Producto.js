@@ -1,10 +1,9 @@
-import React from "react";
-import "../assets/css/Producto.css";
-import img from "../assets/statics/0.png";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
+import "../assets/css/Producto.css";
 import Contexto from "../context/Contexto";
-import { useEffect, useState } from "react";
+
 export default function Producto() {
   const { productos } = useContext(Contexto);
   const [sticker, setSticker] = useState([]);

@@ -1,9 +1,9 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Contexto from "../context/Contexto";
 import iconoCarrito from "../assets/statics/carrito.png";
 import iconoVolver from "../assets/statics/volver.png";
 import { Link } from "react-router-dom";
+
 export default function Header() {
   const { cantidadTotalCarrito } = useContext(Contexto);
 

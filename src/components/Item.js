@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../assets/css/Item.css";
 import Contexto from "../context/Contexto";
 import { Link } from "react-router-dom";
+
 export default function Item(props) {
   const { nombre, precio, medidas, img, id } = props;
   const { agregarCarrito } = useContext(Contexto);

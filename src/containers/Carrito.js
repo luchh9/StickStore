@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../assets/css/Carrito.css";
 import ItemCarrito from "../components/ItemCarrito";
 import Contexto from "../context/Contexto";
+
 export default function Carrito() {
   const {
     carrito,
